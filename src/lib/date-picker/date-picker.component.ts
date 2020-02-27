@@ -121,7 +121,7 @@ export class DatePickerComponent implements OnChanges,
   set selected(selected: Moment[]) {
     this._selected = selected;
     this.inputElementValue = (<string[]>this.utilsService
-      .convertFromMomentArray(this.componentConfig.format, selected, ECalendarValue.StringArr))
+      .convertFromMomentArray(this.componentConfig.outputFormat || this.componentConfig.format, selected, ECalendarValue.StringArr))
       .join(' | ');
     const val = this.processOnChangeCallback(selected);
     this.onChangeCallback(val, false);

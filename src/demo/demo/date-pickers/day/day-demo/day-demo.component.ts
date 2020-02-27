@@ -13,7 +13,8 @@ export class DayDemoComponent extends DateComponent implements OnInit {
   control: FormControl;
   config: IDatePickerConfig = {
     ...DEF_CONF,
-    format: 'DD-MM-YYYY'
+    format: 'D.M.Y',
+    outputFormat: 'DD.MM.Y',
   };
 
   ngOnInit(): void {
