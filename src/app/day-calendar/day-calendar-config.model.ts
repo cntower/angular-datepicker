@@ -12,6 +12,7 @@ export interface IConfig {
   showWeekNumbers?: boolean;
   firstDayOfWeek?: WeekDays;
   format?: string;
+  outputFormat?: string;
   allowMultiSelect?: boolean;
   monthFormat?: string;
   monthFormatter?: (month: Moment) => string;

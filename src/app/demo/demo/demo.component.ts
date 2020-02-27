@@ -223,7 +223,9 @@ export class DemoComponent {
     hideInputContainer: false,
     returnedValueType: ECalendarValue.String,
     unSelectOnClick: true,
-    hideOnOutsideClick: true
+    hideOnOutsideClick: true,
+    format: 'D.M.Y',
+    outputFormat: 'DD.MM.Y'
   };
   isAtTop: boolean = true;
 
