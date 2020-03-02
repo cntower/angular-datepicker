@@ -4,7 +4,8 @@
        class="dp-input-container">
     <input (blur)="inputBlurred()"
            (focus)="inputFocused()"
-           (ngModelChange)="onViewDateChange($event)"
+           (ngModelChange)="onInputKeypress($event)"
+           (keypress)="numberAndDotOnly($event)"
            [disabled]="disabled"
            [ngModel]="inputElementValue"
            [placeholder]="placeholder"

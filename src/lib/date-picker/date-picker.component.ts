@@ -1,22 +1,22 @@
-import {IDate} from '../common/models/date.model';
-import {DomHelper} from '../common/services/dom-appender/dom-appender.service';
-import {UtilsService} from '../common/services/utils/utils.service';
-import {CalendarMode} from '../common/types/calendar-mode';
-import {ECalendarMode} from '../common/types/calendar-mode-enum';
-import {CalendarValue} from '../common/types/calendar-value';
-import {ECalendarValue} from '../common/types/calendar-value-enum';
-import {SingleCalendarValue} from '../common/types/single-calendar-value';
-import {IDayCalendarConfig} from '../day-calendar/day-calendar-config.model';
-import {DayCalendarComponent} from '../day-calendar/day-calendar.component';
-import {DayCalendarService} from '../day-calendar/day-calendar.service';
-import {IDayTimeCalendarConfig} from '../day-time-calendar/day-time-calendar-config.model';
-import {DayTimeCalendarService} from '../day-time-calendar/day-time-calendar.service';
-import {ITimeSelectConfig} from '../time-select/time-select-config.model';
-import {TimeSelectComponent} from '../time-select/time-select.component';
-import {TimeSelectService} from '../time-select/time-select.service';
-import {IDatePickerConfig, IDatePickerConfigInternal} from './date-picker-config.model';
-import {IDpDayPickerApi} from './date-picker.api';
-import {DatePickerService} from './date-picker.service';
+import { IDate } from '../common/models/date.model';
+import { DomHelper } from '../common/services/dom-appender/dom-appender.service';
+import { UtilsService } from '../common/services/utils/utils.service';
+import { CalendarMode } from '../common/types/calendar-mode';
+import { ECalendarMode } from '../common/types/calendar-mode-enum';
+import { CalendarValue } from '../common/types/calendar-value';
+import { ECalendarValue } from '../common/types/calendar-value-enum';
+import { SingleCalendarValue } from '../common/types/single-calendar-value';
+import { IDayCalendarConfig } from '../day-calendar/day-calendar-config.model';
+import { DayCalendarComponent } from '../day-calendar/day-calendar.component';
+import { DayCalendarService } from '../day-calendar/day-calendar.service';
+import { IDayTimeCalendarConfig } from '../day-time-calendar/day-time-calendar-config.model';
+import { DayTimeCalendarService } from '../day-time-calendar/day-time-calendar.service';
+import { ITimeSelectConfig } from '../time-select/time-select-config.model';
+import { TimeSelectComponent } from '../time-select/time-select.component';
+import { TimeSelectService } from '../time-select/time-select.service';
+import { IDatePickerConfig, IDatePickerConfigInternal } from './date-picker-config.model';
+import { IDpDayPickerApi } from './date-picker.api';
+import { DatePickerService } from './date-picker.service';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -45,13 +45,13 @@ import {
   ValidationErrors,
   Validator
 } from '@angular/forms';
-import {Moment, unitOfTime} from 'moment';
-import {DateValidator} from '../common/types/validator.type';
-import {MonthCalendarComponent} from '../month-calendar/month-calendar.component';
-import {DayTimeCalendarComponent} from '../day-time-calendar/day-time-calendar.component';
-import {INavEvent} from '../common/models/navigation-event.model';
-import {SelectEvent} from '../common/types/selection-evet.enum.';
-import {ISelectionEvent} from '../common/types/selection-evet.model';
+import { Moment, unitOfTime } from 'moment';
+import { DateValidator } from '../common/types/validator.type';
+import { MonthCalendarComponent } from '../month-calendar/month-calendar.component';
+import { DayTimeCalendarComponent } from '../day-time-calendar/day-time-calendar.component';
+import { INavEvent } from '../common/models/navigation-event.model';
+import { SelectEvent } from '../common/types/selection-evet.enum.';
+import { ISelectionEvent } from '../common/types/selection-evet.model';
 
 @Component({
   selector: 'dp-date-picker',
@@ -77,11 +77,11 @@ import {ISelectionEvent} from '../common/types/selection-evet.model';
   ]
 })
 export class DatePickerComponent implements OnChanges,
-                                            OnInit,
-                                            AfterViewInit,
-                                            ControlValueAccessor,
-                                            Validator,
-                                            OnDestroy {
+  OnInit,
+  AfterViewInit,
+  ControlValueAccessor,
+  Validator,
+  OnDestroy {
 
   get openOnFocus(): boolean {
     return this.componentConfig.openOnFocus;
@@ -166,11 +166,11 @@ export class DatePickerComponent implements OnChanges,
   @Output() onLeftNav: EventEmitter<INavEvent> = new EventEmitter();
   @Output() onRightNav: EventEmitter<INavEvent> = new EventEmitter();
   @Output() onSelect: EventEmitter<ISelectionEvent> = new EventEmitter();
-  @ViewChild('container', {static: false}) calendarContainer: ElementRef;
-  @ViewChild('dayCalendar', {static: false}) dayCalendarRef: DayCalendarComponent;
-  @ViewChild('monthCalendar', {static: false}) monthCalendarRef: MonthCalendarComponent;
-  @ViewChild('daytimeCalendar', {static: false}) dayTimeCalendarRef: DayTimeCalendarComponent;
-  @ViewChild('timeSelect', {static: false}) timeSelectRef: TimeSelectComponent;
+  @ViewChild('container', { static: false }) calendarContainer: ElementRef;
+  @ViewChild('dayCalendar', { static: false }) dayCalendarRef: DayCalendarComponent;
+  @ViewChild('monthCalendar', { static: false }) monthCalendarRef: MonthCalendarComponent;
+  @ViewChild('daytimeCalendar', { static: false }) dayTimeCalendarRef: DayTimeCalendarComponent;
+  @ViewChild('timeSelect', { static: false }) timeSelectRef: TimeSelectComponent;
   componentConfig: IDatePickerConfigInternal;
   dayCalendarConfig: IDayCalendarConfig;
   dayTimeCalendarConfig: IDayTimeCalendarConfig;
@@ -200,11 +200,11 @@ export class DatePickerComponent implements OnChanges,
   _currentDateView: Moment;
 
   constructor(private readonly dayPickerService: DatePickerService,
-              private readonly domHelper: DomHelper,
-              private readonly elemRef: ElementRef,
-              private readonly renderer: Renderer2,
-              private readonly utilsService: UtilsService,
-              public readonly cd: ChangeDetectorRef) {
+    private readonly domHelper: DomHelper,
+    private readonly elemRef: ElementRef,
+    private readonly renderer: Renderer2,
+    private readonly utilsService: UtilsService,
+    public readonly cd: ChangeDetectorRef) {
   }
 
   @HostListener('click')
@@ -327,7 +327,7 @@ export class DatePickerComponent implements OnChanges,
     this.popupElem = this.elemRef.nativeElement.querySelector('.dp-popup');
     this.handleInnerElementClick(this.popupElem);
 
-    const {appendTo} = this.componentConfig;
+    const { appendTo } = this.componentConfig;
     if (appendTo) {
       if (typeof appendTo === 'string') {
         this.appendToElement = <HTMLElement>document.querySelector(<string>appendTo);
@@ -416,7 +416,9 @@ export class DatePickerComponent implements OnChanges,
     this.close.emit();
     this.cd.markForCheck();
   }
-
+  onInputKeypress(event:KeyboardEvent): boolean {
+    return true;
+  }
   onViewDateChange(value: CalendarValue) {
     const strVal = value ? this.utilsService.convertToString(value, this.componentConfig.format) : '';
     if (this.dayPickerService.isValidInputDateValue(strVal, this.componentConfig)) {
