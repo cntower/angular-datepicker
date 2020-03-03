@@ -82,6 +82,7 @@ export class DatePickerComponent implements OnChanges,
   ControlValueAccessor,
   Validator,
   OnDestroy {
+  isInputFocused: boolean;
 
   get openOnFocus(): boolean {
     return this.componentConfig.openOnFocus;
@@ -120,9 +121,11 @@ export class DatePickerComponent implements OnChanges,
 
   set selected(selected: Moment[]) {
     this._selected = selected;
-    this.inputElementValue = (<string[]>this.utilsService
-      .convertFromMomentArray(this.componentConfig.outputFormat || this.componentConfig.format, selected, ECalendarValue.StringArr))
-      .join(' | ');
+    if (!this.isInputFocused) {
+      this.inputElementValue = (<string[]>this.utilsService
+        .convertFromMomentArray(this.componentConfig.outputFormat || this.componentConfig.format, selected, ECalendarValue.StringArr))
+        .join(' | ');
+    }
     const val = this.processOnChangeCallback(selected);
     this.onChangeCallback(val, false);
     this.onChange.emit(val);
@@ -373,6 +376,7 @@ export class DatePickerComponent implements OnChanges,
   }
 
   inputFocused() {
+    this.isInputFocused = true;
     if (!this.openOnFocus) {
       return;
     }
@@ -391,6 +395,7 @@ export class DatePickerComponent implements OnChanges,
   }
 
   inputBlurred() {
+    this.isInputFocused = false;
     this.onTouchedCallback();
   }
 
@@ -416,7 +421,7 @@ export class DatePickerComponent implements OnChanges,
     this.close.emit();
     this.cd.markForCheck();
   }
-  onInputKeypress(event:KeyboardEvent): boolean {
+  onInputKeypress(event: KeyboardEvent): boolean {
     return true;
   }
   onViewDateChange(value: CalendarValue) {
